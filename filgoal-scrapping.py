@@ -9,9 +9,6 @@ def get_cups(soup):
     cups = container_of_cups.find_all('div',{'class':'mc-block'})
     return cups
 
-# Get CUP Content
-# def get_cup_by_name(name):
-    
 
 def count_of_matches(cup):
     matches = cup.find_all('div',{'class':'cin_cntnr'})
