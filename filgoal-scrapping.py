@@ -69,7 +69,6 @@ def main(page):
     # print(all_matches_details)
     
     keys = all_matches_details[0][0].keys()
-    print(all_matches_details[0])
     
     with open('./matches-details.csv','w') as output_file:
         dict_writer = csv.DictWriter(output_file,keys)
@@ -97,5 +96,6 @@ except ValueError:
 try:
     filgoalPage = requests.get(f"https://www.filgoal.com/matches/?date={date}")
     main(filgoalPage)
+    print('Great The CSV File Created Successfully !')
 except ValueError:
     print("Sorry, An Error happened in the server please try again later")
