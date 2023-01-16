@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-
+import datetime
 
 # Get All Cups
 def get_cups(soup):
@@ -10,6 +10,7 @@ def get_cups(soup):
     return cups
 
 
+# Get count of matches
 def count_of_matches(cup):
     matches = cup.find_all('div',{'class':'cin_cntnr'})
     return len(matches)
@@ -82,8 +83,19 @@ def main(page):
 
 
 # Execution (Calling)
+
 date = input('Please Enter the date : ')
 all_matches_details = []
-filgoalPage = requests.get(f"https://www.filgoal.com/matches/?date={date}")
-main(filgoalPage)
+date_format = '%Y-%m-%d'
 
+try:
+    dateObject = datetime.datetime.strptime(date, date_format)
+except ValueError:
+   print("Incorrect data format, should be YYYY-MM-DD")
+
+
+try:
+    filgoalPage = requests.get(f"https://www.filgoal.com/matches/?date={date}")
+    main(filgoalPage)
+except ValueError:
+    print("Sorry, An Error happened in the server please try again later")
